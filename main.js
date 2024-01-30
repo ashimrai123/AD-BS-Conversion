@@ -4,48 +4,36 @@ document.addEventListener("DOMContentLoaded", function () {
     // You can customize options as per your requirements
   });
 
-  // Convert selected date to Nepali date for "adDate"
   var adDateInput = document.getElementById("adDate");
-  var convertedBsDateOutput = document.getElementById("convertedBsDate"); // New output field
-  var bsDateInput = document.getElementById("bsDate");
-  var convertedAdDateOutput = document.getElementById("convertedAdDate"); // New output field
+  var bsDateInput = document.getElementById("bsDate"); // Use the same input field for BS Date
 
   adDateInput.addEventListener("change", function () {
     var selectedADDate = adDateInput.value;
     var bsDate = NepaliFunctions.AD2BS(selectedADDate, "YYYY-MM-DD", "YYYY-MM-DD");
 
-    // Display converted BS date in the new output input box
-    convertedBsDateOutput.value = bsDate;
+    // Display converted BS date in the same input box
+    bsDateInput.value = bsDate;
 
     // Log information to the console
     console.log("Selected AD Date:", selectedADDate);
     console.log("Converted BS Date:", bsDate);
-
-
-    
   });
 
- // Assuming selectedBSDate is in the format { bs: 'YYYY-MM-DD', ad: 'YYYY-MM-DD', object: { year: ..., month: ..., day: ... } }
+  bsDateInput.nepaliDatePicker({
+    onChange: function (selectedBSDate) {
+      console.log("Selected BS Date (before conversion):", selectedBSDate);
 
- bsDateInput.nepaliDatePicker({
-  onChange: function (selectedBSDate) {
-    console.log("Selected BS Date (before conversion):", selectedBSDate);
+      var adDate = NepaliFunctions.BS2AD(selectedBSDate.object, "YYYY-MM-DD");
 
-    // Use the object property directly for BS2AD conversion
-    var adDate = NepaliFunctions.BS2AD(selectedBSDate.object, "YYYY-MM-DD");
+      console.log("Converted AD Date (raw):", adDate);
+      console.log("Year:", adDate.year);
+      console.log("Month:", adDate.month);
+      console.log("Day:", adDate.day);
 
-    console.log("Converted AD Date (raw):", adDate);
-    console.log("Year:", adDate.year);
-    console.log("Month:", adDate.month);
-    console.log("Day:", adDate.day);
+      var formattedADDate = adDate.year + "-" + adDate.month + "-" + adDate.day;
+      console.log("Formatted AD Date:", formattedADDate);
 
-    // Format the AD Date for display
-    var formattedADDate = adDate.year + "-" + adDate.month + "-" + adDate.day;
-    console.log("Formatted AD Date:", formattedADDate);
-
-    convertedAdDateOutput.value = formattedADDate;
-  },
-});
-
-  
+      adDateInput.value = formattedADDate; // Update the AD Date input field
+    },
+  });
 });
