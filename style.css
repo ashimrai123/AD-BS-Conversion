@@ -1,0 +1,68 @@
+body,
+h1,
+p,
+label {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
+  line-height: 1.6;
+  margin: 0;
+}
+
+header {
+  background: linear-gradient(90deg, #007bff, #00bfff);
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+}
+
+main {
+  max-width: 600px;
+  margin: 20px auto;
+}
+
+.adDateContainer,
+.bsDateContainer {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+label {
+  font-size: 1.2em;
+  margin-bottom: 8px;
+  color: #555;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 15px;
+  box-sizing: border-box;
+  border: 2px solid #007bff;
+  border-radius: 8px;
+  transition: border-color 0.3s ease-in-out;
+  font-size: 1.2em;
+}
+
+input[type="text"]:focus {
+  border-color: #004080;
+}
+
+input:hover {
+  cursor: pointer;
+}
+
+.flatpickr-calendar {
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.nepali-datepicker {
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
